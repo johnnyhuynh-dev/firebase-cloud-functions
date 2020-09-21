@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <div class="notification"></div>
     <!-- auth modals -->
     <div class="auth open">
       <div class="modal">
@@ -54,18 +55,25 @@
       </nav>
     </header>
 
-    <section class="content">
+    <section class="content" id="app">
       <h1>Tutorial Requests</h1>
       <ul class="request-list">
-        <li>
-          <span class="text">Laravel 6 tutorial</span>
+        <li v-for="request in requests">
+          <span class="text">{{request.text}}</span>
           <div>
-            <span class="votes">125</span>
-            <i class="material-icons upvote">arrow_upward</i>
+            <span class="votes">{{request.upvotes}}</span>
+            <i
+              class="material-icons upvote"
+              v-on:click="upVoteRequest(request.id)"
+              >arrow_upward</i
+            >
           </div>
         </li>
       </ul>
     </section>
+
+    <!-- vue js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
     <!-- update the version number as needed -->
     <script src="/__/firebase/7.20.0/firebase-app.js"></script>
@@ -78,5 +86,6 @@
 
     <script src="js/app.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/requests.js"></script>
   </body>
 </html>
